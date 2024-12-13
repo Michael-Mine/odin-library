@@ -1,19 +1,38 @@
 const myLibrary = [];
 
-function Book(title, author, pages, read) {
-    this.title = title;
-    this.author = author;
-    this.pages = pages;
-    this.read = read;
-    this.info = function() {
-        console.log (this.title + " by " + this.author + ", " + this.pages + " pages, " + this.read);
-    };
-};
+// function Book(title, author, pages, read) {
+//     this.title = title;
+//     this.author = author;
+//     this.pages = pages;
+//     this.read = read;
+//     this.info = function() {
+//         console.log (this.title + " by " + this.author + ", " + this.pages + " pages, " + this.read);
+//     };
+// };
 
-Book.prototype.changeReadYes = function () {
-    this.info(); 
-    this.read = "Yes"
-    this.info(); 
+// Book.prototype.changeReadYes = function () {
+//     this.info(); 
+//     this.read = "Yes"
+//     this.info(); 
+// }
+
+class Book {
+    constructor(title, author, pages, read) {
+        this.title = title;
+        this.author = author;
+        this.pages = pages;
+        this.read = read;
+    }
+
+    info() {
+        console.log (this.title + " by " + this.author + ", " + this.pages + " pages, " + this.read);
+    }
+
+    changeReadYes() {
+        this.info(); 
+        this.read = "Yes";
+        this.info(); 
+    }
 }
 
 function addBookToLibrary(newBook) {
@@ -69,9 +88,7 @@ function displayBooks(value) {
 
         changeRead.addEventListener("click", () => {
             console.log(myLibrary[bookIndex]);
-            console.log(myLibrary[bookIndex].read);
-            myLibrary[bookIndex].changeReadYes();
-            console.log(myLibrary[bookIndex].read); 
+            (() => myLibrary[bookIndex].changeReadYes())
         });
     };
 
